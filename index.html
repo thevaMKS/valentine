@@ -182,4 +182,67 @@
     <img src="photo3.jpg" alt="Left 3">
   </div>
 
-  <!-- Center
+  <!-- Center -->
+  <div class="center">
+    <div class="title">Happy Valentine's Day</div>
+    <div class="name">Thanushri Siva Kumar</div>
+    <div class="question">Will you be my valentine?</div>
+    <button class="yes" onclick="sayYes()">Yes</button>
+    <button class="no" onclick="sayNo()">No</button>
+    <div id="response"></div>
+  </div>
+
+  <!-- Right column images -->
+  <div class="right-column">
+    <img src="photo7.jpg" alt="Right 1">
+    <img src="photo8.jpg" alt="Right 2">
+    <img src="photo9.jpg" alt="Right 3">
+  </div>
+
+  <!-- Bottom row images -->
+  <div class="bottom-row" style="grid-column: 1/4;">
+    <img src="photo10.jpg" alt="Bottom 1">
+    <img src="photo11.jpg" alt="Bottom 2">
+    <img src="photo12.jpg" alt="Bottom 3">
+  </div>
+</div>
+
+<script>
+function sayYes() {
+  document.getElementById('response').innerText =
+    'I am so lucky to have you as my first valentine ❤️';
+  createFireworks();
+}
+
+function sayNo() {
+  document.getElementById('response').innerText =
+    'Please try again, that is the wrong answer 😉';
+}
+
+function createFireworks() {
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  for (let i = 0; i < 20; i++) {
+    const fire = document.createElement('div');
+    fire.className = 'firework';
+    fire.style.left = centerX + 'px';
+    fire.style.top = centerY + 'px';
+    
+    fire.innerText = '✨';
+    const colors = ['#ffd700', '#ff69b4', '#ff4500', '#ffffff'];
+    fire.style.color = colors[Math.floor(Math.random() * colors.length)];
+    
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200;
+    fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+    fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+    
+    document.body.appendChild(fire);
+    setTimeout(() => fire.remove(), 1000);
+  }
+}
+</script>
+
+</body>
+</html>
