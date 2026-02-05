@@ -34,19 +34,25 @@
     }
 
     /* Top & Bottom rows: horizontal spacing 20% */
-    .top-row, .bottom-row { gap: 40px; } /* 20% of 170px*1.35 ≈ 40px approx */
+    .top-row, .bottom-row { gap: 40px; }
 
     /* Left & Right columns: vertical spacing 20% */
     .side, .right-column {
       flex-direction: column;
-      gap: 40px; /* 20% of image size ~40px */
+      gap: 40px;
       align-items: center;
       justify-content: center;
     }
 
+    /* Position offsets */
+    .side { transform: translateX(15%); }
+    .right-column { transform: translateX(-15%); }
+    .top-row { transform: translateY(15%); }
+    .bottom-row { transform: translateY(-15%); }
+
     /* All images floating */
     img {
-      width: 230px; /* 170px + 35% = ~230px */
+      width: 230px; /* 35% bigger */
       height: 230px;
       object-fit: cover;
       border-radius: 16px;
@@ -83,7 +89,7 @@
     }
 
     .title {
-      font-size: 70px;
+      font-size: 84px; /* 20% increase */
       font-family: 'Great Vibes', cursive;
       background: linear-gradient(90deg, #ffd700, #fff2a8, #ffd700);
       background-size: 200% auto;
@@ -96,8 +102,9 @@
 
     @keyframes shimmer { to { background-position: 200% center; } }
 
-    .name { font-size: 32px; margin-top: 10px; }
-    .question { font-size: 26px; margin: 15px 0 25px; color: #ffb6c1; }
+    .name { font-size: 38px; margin-top: 10px; }
+    .question { font-size: 31px; margin: 15px 0 25px; color: #ffb6c1; }
+    #response { margin-top: 20px; font-size: 24px; color: #fff2a8; }
 
     button {
       padding: 14px 28px;
@@ -112,7 +119,6 @@
     button:hover { transform: scale(1.05); }
     .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
     .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
-    #response { margin-top: 20px; font-size: 20px; color: #fff2a8; }
 
     /* Floating hearts/stars */
     .floating {
