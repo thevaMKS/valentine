@@ -26,23 +26,23 @@
       justify-items: center;
     }
 
-    /* Top row images */
-    .top-row, .bottom-row, .right-column {
+    /* Rows and columns */
+    .top-row, .bottom-row, .side, .right-column {
       display: flex;
       gap: 20px;
       justify-content: center;
-      width: 100%;
-    }
-
-    /* Left column images */
-    .side {
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      flex-direction: row; /* default row */
     }
 
-    .side img {
+    .side { flex-direction: column; }
+
+    .side img:nth-child(1) { margin-bottom: 40px; } /* 20% spacing */
+    .side img:nth-child(2) { margin-bottom: 40px; }
+    .side img:nth-child(3) { margin-bottom: 0; }
+
+    /* Common style for all images */
+    img {
       width: 170px;
       height: 170px;
       object-fit: cover;
@@ -51,15 +51,19 @@
       animation: floatImage 6s ease-in-out infinite alternate;
     }
 
-    /* Individual vertical spacing between left images */
-    .side img:nth-child(1) { margin-bottom: 40px; } /* 20% spacing more */
-    .side img:nth-child(2) { margin-bottom: 40px; } /* 20% spacing more */
-    .side img:nth-child(3) { margin-bottom: 0; }
-
-    /* Floating animation */
-    .side img:nth-child(1) { animation-delay: 0s; }
-    .side img:nth-child(2) { animation-delay: 1s; }
-    .side img:nth-child(3) { animation-delay: 2s; }
+    /* Stagger animation delays for all images */
+    img:nth-child(1) { animation-delay: 0s; }
+    img:nth-child(2) { animation-delay: 0.5s; }
+    img:nth-child(3) { animation-delay: 1s; }
+    img:nth-child(4) { animation-delay: 1.5s; }
+    img:nth-child(5) { animation-delay: 2s; }
+    img:nth-child(6) { animation-delay: 2.5s; }
+    img:nth-child(7) { animation-delay: 3s; }
+    img:nth-child(8) { animation-delay: 3.5s; }
+    img:nth-child(9) { animation-delay: 4s; }
+    img:nth-child(10) { animation-delay: 4.5s; }
+    img:nth-child(11) { animation-delay: 5s; }
+    img:nth-child(12) { animation-delay: 5.5s; }
 
     @keyframes floatImage {
       0% { transform: translate(0,0) scale(1); }
@@ -91,16 +95,8 @@
       to { background-position: 200% center; }
     }
 
-    .name {
-      font-size: 32px;
-      margin-top: 10px;
-    }
-
-    .question {
-      font-size: 26px;
-      margin: 15px 0 25px;
-      color: #ffb6c1;
-    }
+    .name { font-size: 32px; margin-top: 10px; }
+    .question { font-size: 26px; margin: 15px 0 25px; color: #ffb6c1; }
 
     button {
       padding: 14px 28px;
@@ -112,12 +108,9 @@
       font-family: 'Playfair Display', serif;
       transition: transform 0.2s;
     }
-
     button:hover { transform: scale(1.05); }
-
     .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
     .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
-
     #response { margin-top: 20px; font-size: 20px; color: #fff2a8; }
 
     /* Floating hearts/stars */
@@ -131,7 +124,6 @@
       pointer-events: none;
       z-index: 1;
     }
-
     .floating span {
       position: absolute;
       bottom: -50px;
@@ -140,14 +132,13 @@
       opacity: 0.8;
       font-size: 18px;
     }
-
     @keyframes floatUp {
       0% { transform: translateY(0) scale(1); opacity: 0; }
       20% { opacity: 1; }
       100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
 
-    /* Fireworks on yes */
+    /* Fireworks on Yes click */
     .firework {
       position: absolute;
       font-size: 24px;
@@ -155,7 +146,6 @@
       animation: fireworkAnim 1s ease-out forwards;
       pointer-events: none;
     }
-
     @keyframes fireworkAnim {
       0% { transform: scale(0) translate(0,0); opacity: 1; }
       100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity: 0; }
@@ -166,6 +156,7 @@
 <body>
 
 <div class="floating">
+  <!-- More hearts/stars -->
   <span style="left:5%; animation-delay:0s">★</span>
   <span style="left:15%; animation-delay:1s">❤</span>
   <span style="left:25%; animation-delay:2s">★</span>
@@ -180,16 +171,16 @@
 <div class="container">
   <!-- Top row images -->
   <div class="top-row" style="grid-column: 1/4;">
-    <img src="photo_top1.jpg" alt="Top 1">
-    <img src="photo_top2.jpg" alt="Top 2">
-    <img src="photo_top3.jpg" alt="Top 3">
+    <img src="photo4.jpg" alt="Top 1">
+    <img src="photo5.jpg" alt="Top 2">
+    <img src="photo6.jpg" alt="Top 3">
   </div>
 
   <!-- Left column images -->
   <div class="side">
-    <img src="photo_left1.jpg" alt="Left 1">
-    <img src="photo_left2.jpg" alt="Left 2">
-    <img src="photo_left3.jpg" alt="Left 3">
+    <img src="photo1.jpg" alt="Left 1">
+    <img src="photo2.jpg" alt="Left 2">
+    <img src="photo3.jpg" alt="Left 3">
   </div>
 
   <!-- Center -->
@@ -197,25 +188,23 @@
     <div class="title">Happy Valentine's Day</div>
     <div class="name">Thanushri Siva Kumar</div>
     <div class="question">Will you be my valentine?</div>
-
     <button class="yes" onclick="sayYes()">Yes</button>
     <button class="no" onclick="sayNo()">No</button>
-
     <div id="response"></div>
   </div>
 
   <!-- Right column images -->
-  <div class="right-column" style="grid-column: 3/4;">
-    <img src="photo_right1.jpg" alt="Right 1">
-    <img src="photo_right2.jpg" alt="Right 2">
-    <img src="photo_right3.jpg" alt="Right 3">
+  <div class="right-column">
+    <img src="photo7.jpg" alt="Right 1">
+    <img src="photo8.jpg" alt="Right 2">
+    <img src="photo9.jpg" alt="Right 3">
   </div>
 
   <!-- Bottom row images -->
   <div class="bottom-row" style="grid-column: 1/4;">
-    <img src="photo_bottom1.jpg" alt="Bottom 1">
-    <img src="photo_bottom2.jpg" alt="Bottom 2">
-    <img src="photo_bottom3.jpg" alt="Bottom 3">
+    <img src="photo10.jpg" alt="Bottom 1">
+    <img src="photo11.jpg" alt="Bottom 2">
+    <img src="photo12.jpg" alt="Bottom 3">
   </div>
 </div>
 
@@ -234,7 +223,6 @@ function sayNo() {
 function createFireworks() {
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-
   for (let i = 0; i < 20; i++) {
     const fire = document.createElement('div');
     fire.className = 'firework';
