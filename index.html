@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      background: #111; /* slightly lighter than black */
+      background: #800020; /* burgundy background */
       color: white;
       font-family: 'Playfair Display', serif;
       height: 100vh;
@@ -25,7 +25,7 @@
     .side {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 35px; /* increased spacing between images (~15% of 204px) */
       align-items: center;
       justify-content: center;
     }
@@ -35,7 +35,7 @@
       height: 204px;
       object-fit: cover;
       border-radius: 16px;
-      border: 2px solid gold;
+      border: 2px solid #ffb6c1; /* light pink for contrast against burgundy background */
       animation: floatImage 6s ease-in-out infinite alternate;
     }
 
@@ -60,7 +60,7 @@
     .title {
       font-size: 70px;
       font-family: 'Great Vibes', cursive;
-      background: linear-gradient(90deg, #d4af37, #fff2a8, #d4af37);
+      background: linear-gradient(90deg, #ffd700, #fff2a8, #ffd700);
       background-size: 200% auto;
       color: transparent;
       -webkit-background-clip: text;
@@ -81,7 +81,7 @@
     .question {
       font-size: 26px;
       margin: 15px 0 25px;
-      color: gold;
+      color: #ffb6c1; /* light pink to match borders */
     }
 
     button {
@@ -100,15 +100,15 @@
     }
 
     .yes {
-      background: gold;
-      color: black;
+      background: #ffb6c1;
+      color: #800020;
       font-weight: bold;
     }
 
     .no {
       background: transparent;
-      border: 1px solid gold;
-      color: gold;
+      border: 1px solid #ffb6c1;
+      color: #ffb6c1;
     }
 
     #response {
@@ -130,7 +130,7 @@
     .floating span {
       position: absolute;
       bottom: -50px;
-      color: gold;
+      color: #ffb6c1;
       animation: floatUp 8s linear infinite;
       opacity: 0.8;
       font-size: 18px;
@@ -174,7 +174,7 @@
   </div>
 
   <div class="side">
-    <!-- Optional: add more images here for symmetry -->
+    <!-- Optional: add more images here -->
   </div>
 
 </div>
