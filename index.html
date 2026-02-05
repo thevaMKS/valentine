@@ -31,11 +31,25 @@
     }
 
     .side img {
-      width: 170px;
-      height: 170px;
+      width: 204px; /* 170px + 20% */
+      height: 204px;
       object-fit: cover;
       border-radius: 16px;
       border: 2px solid gold;
+      animation: floatImage 6s ease-in-out infinite alternate;
+    }
+
+    /* Individual delays for floating effect */
+    .side img:nth-child(1) { animation-delay: 0s; }
+    .side img:nth-child(2) { animation-delay: 1s; }
+    .side img:nth-child(3) { animation-delay: 2s; }
+
+    @keyframes floatImage {
+      0% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(15px, -10px) scale(1.1); }
+      50% { transform: translate(-10px, 15px) scale(1.2); }
+      75% { transform: translate(5px, -5px) scale(1.1); }
+      100% { transform: translate(0, 0) scale(1); }
     }
 
     .center {
@@ -78,6 +92,11 @@
       border: none;
       cursor: pointer;
       font-family: 'Playfair Display', serif;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
     }
 
     .yes {
@@ -138,7 +157,6 @@
 <div class="container">
   
   <div class="side">
-    <!-- Upload your images to the repo and keep these names -->
     <img src="photo1.jpg" alt="Memory 1">
     <img src="photo2.jpg" alt="Memory 2">
     <img src="photo3.jpg" alt="Memory 3">
@@ -155,7 +173,9 @@
     <div id="response"></div>
   </div>
 
-  <div class="side"></div>
+  <div class="side">
+    <!-- Optional: add more images here for symmetry -->
+  </div>
 
 </div>
 
