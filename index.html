@@ -12,49 +12,67 @@
       font-family: 'Playfair Display', serif;
       height: 100vh;
       overflow: hidden;
+      position: relative;
     }
 
     .container {
       display: grid;
+      grid-template-rows: auto 1fr auto;
       grid-template-columns: 1fr 2fr 1fr;
       width: 100%;
       height: 100vh;
+      gap: 10px;
       align-items: center;
+      justify-items: center;
     }
 
+    /* Top row images */
+    .top-row, .bottom-row, .right-column {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Left column images */
     .side {
       display: flex;
       flex-direction: column;
-      gap: 35px; /* increased spacing between images (~15% of 204px) */
       align-items: center;
       justify-content: center;
     }
 
     .side img {
-      width: 204px; /* 170px + 20% */
-      height: 204px;
+      width: 170px;
+      height: 170px;
       object-fit: cover;
       border-radius: 16px;
-      border: 2px solid #ffb6c1; /* light pink for contrast against burgundy background */
+      border: 2px solid #ffb6c1;
       animation: floatImage 6s ease-in-out infinite alternate;
     }
 
-    /* Individual delays for floating effect */
+    /* Individual vertical spacing between left images */
+    .side img:nth-child(1) { margin-bottom: 40px; } /* 20% spacing more */
+    .side img:nth-child(2) { margin-bottom: 40px; } /* 20% spacing more */
+    .side img:nth-child(3) { margin-bottom: 0; }
+
+    /* Floating animation */
     .side img:nth-child(1) { animation-delay: 0s; }
     .side img:nth-child(2) { animation-delay: 1s; }
     .side img:nth-child(3) { animation-delay: 2s; }
 
     @keyframes floatImage {
-      0% { transform: translate(0, 0) scale(1); }
+      0% { transform: translate(0,0) scale(1); }
       25% { transform: translate(15px, -10px) scale(1.1); }
       50% { transform: translate(-10px, 15px) scale(1.2); }
       75% { transform: translate(5px, -5px) scale(1.1); }
-      100% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(0,0) scale(1); }
     }
 
     .center {
       text-align: center;
-      padding: 40px;
+      padding: 20px;
+      z-index: 10;
     }
 
     .title {
@@ -81,7 +99,7 @@
     .question {
       font-size: 26px;
       margin: 15px 0 25px;
-      color: #ffb6c1; /* light pink to match borders */
+      color: #ffb6c1;
     }
 
     button {
@@ -95,28 +113,14 @@
       transition: transform 0.2s;
     }
 
-    button:hover {
-      transform: scale(1.05);
-    }
+    button:hover { transform: scale(1.05); }
 
-    .yes {
-      background: #ffb6c1;
-      color: #800020;
-      font-weight: bold;
-    }
+    .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
+    .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
 
-    .no {
-      background: transparent;
-      border: 1px solid #ffb6c1;
-      color: #ffb6c1;
-    }
+    #response { margin-top: 20px; font-size: 20px; color: #fff2a8; }
 
-    #response {
-      margin-top: 20px;
-      font-size: 20px;
-      color: #fff2a8;
-    }
-
+    /* Floating hearts/stars */
     .floating {
       position: absolute;
       width: 100%;
@@ -125,6 +129,7 @@
       left: 0;
       overflow: hidden;
       pointer-events: none;
+      z-index: 1;
     }
 
     .floating span {
@@ -141,27 +146,53 @@
       20% { opacity: 1; }
       100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
+
+    /* Fireworks on yes */
+    .firework {
+      position: absolute;
+      font-size: 24px;
+      color: #ffd700;
+      animation: fireworkAnim 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fireworkAnim {
+      0% { transform: scale(0) translate(0,0); opacity: 1; }
+      100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity: 0; }
+    }
+
   </style>
 </head>
 <body>
 
 <div class="floating">
-  <span style="left:10%; animation-delay:0s">★</span>
-  <span style="left:20%; animation-delay:2s">❤</span>
-  <span style="left:35%; animation-delay:4s">★</span>
-  <span style="left:50%; animation-delay:1s">❤</span>
-  <span style="left:65%; animation-delay:3s">★</span>
-  <span style="left:80%; animation-delay:5s">❤</span>
+  <span style="left:5%; animation-delay:0s">★</span>
+  <span style="left:15%; animation-delay:1s">❤</span>
+  <span style="left:25%; animation-delay:2s">★</span>
+  <span style="left:35%; animation-delay:3s">❤</span>
+  <span style="left:45%; animation-delay:4s">★</span>
+  <span style="left:55%; animation-delay:5s">❤</span>
+  <span style="left:65%; animation-delay:2s">★</span>
+  <span style="left:75%; animation-delay:3s">❤</span>
+  <span style="left:85%; animation-delay:4s">★</span>
 </div>
 
 <div class="container">
-  
-  <div class="side">
-    <img src="photo1.jpg" alt="Memory 1">
-    <img src="photo2.jpg" alt="Memory 2">
-    <img src="photo3.jpg" alt="Memory 3">
+  <!-- Top row images -->
+  <div class="top-row" style="grid-column: 1/4;">
+    <img src="photo_top1.jpg" alt="Top 1">
+    <img src="photo_top2.jpg" alt="Top 2">
+    <img src="photo_top3.jpg" alt="Top 3">
   </div>
 
+  <!-- Left column images -->
+  <div class="side">
+    <img src="photo_left1.jpg" alt="Left 1">
+    <img src="photo_left2.jpg" alt="Left 2">
+    <img src="photo_left3.jpg" alt="Left 3">
+  </div>
+
+  <!-- Center -->
   <div class="center">
     <div class="title">Happy Valentine's Day</div>
     <div class="name">Thanushri Siva Kumar</div>
@@ -173,21 +204,49 @@
     <div id="response"></div>
   </div>
 
-  <div class="side">
-    <!-- Optional: add more images here -->
+  <!-- Right column images -->
+  <div class="right-column" style="grid-column: 3/4;">
+    <img src="photo_right1.jpg" alt="Right 1">
+    <img src="photo_right2.jpg" alt="Right 2">
+    <img src="photo_right3.jpg" alt="Right 3">
   </div>
 
+  <!-- Bottom row images -->
+  <div class="bottom-row" style="grid-column: 1/4;">
+    <img src="photo_bottom1.jpg" alt="Bottom 1">
+    <img src="photo_bottom2.jpg" alt="Bottom 2">
+    <img src="photo_bottom3.jpg" alt="Bottom 3">
+  </div>
 </div>
 
 <script>
 function sayYes() {
   document.getElementById('response').innerText =
     'I am so lucky to have you as my first valentine ❤️';
+  createFireworks();
 }
 
 function sayNo() {
   document.getElementById('response').innerText =
     'Please try again, that is the wrong answer 😉';
+}
+
+function createFireworks() {
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  for (let i = 0; i < 20; i++) {
+    const fire = document.createElement('div');
+    fire.className = 'firework';
+    fire.style.left = centerX + 'px';
+    fire.style.top = centerY + 'px';
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200;
+    fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+    fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+    document.body.appendChild(fire);
+    setTimeout(() => fire.remove(), 1000);
+  }
 }
 </script>
 
