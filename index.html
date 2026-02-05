@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe4e6, #fecdd3);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+    p {
+      color: #555;
+      font-size: 18px;
+    }
+    button {
+      padding: 12px 22px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    .yes {
+      background: #ef4444;
+      color: white;
+    }
+    .no {
+      background: white;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>❤️</h1>
+  <h1>Kannu, would you be my valentine this year, Thanushri Siva Kumar?</h1>
+  <p>You mean the world to me, no matter the distance.</p>
+
+  <button class="yes" onclick="sayYes()">Yes ❤️</button>
+  <button class="no" onclick="sayNo()">No 😢</button>
+
+  <p id="response"></p>
+</div>
+
+<script>
+function sayYes() {
+  document.getElementById("response").innerText =
+    "You just made me the happiest person alive ❤️";
+}
+
+function sayNo() {
+  document.getElementById("response").innerText =
+    "Are you sure? Try pressing yes 😊";
+}
+</script>
+
+</body>
+</html>
