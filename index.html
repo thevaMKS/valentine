@@ -1,163 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Valentine's Day</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background: #800020; /* burgundy */
-      color: white;
-      font-family: 'Playfair Display', serif;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<title>Happy Valentine's Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  background: #800020; /* burgundy */
+  color: white;
+  font-family: 'Playfair Display', serif;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 
-    .container {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 2fr 1fr;
-      width: 100%;
-      height: 100vh;
-      gap: 10px;
-      align-items: center;
-      justify-items: center;
-    }
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr 2fr 1fr;
+  width: 100%;
+  height: 100vh;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+}
 
-    /* Rows and columns */
-    .top-row, .bottom-row, .side, .right-column {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* Rows and columns */
+.top-row, .bottom-row, .side, .right-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* Top & Bottom rows: horizontal spacing 20% */
-    .top-row, .bottom-row { gap: 40px; }
+.top-row, .bottom-row { gap: 40px; }
+.side, .right-column {
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* Left & Right columns: vertical spacing 20% */
-    .side, .right-column {
-      flex-direction: column;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
-    }
+/* Offsets */
+.side { transform: translateX(35%); } /* left images moved 35% right */
+.right-column { transform: translateX(-35%); } /* right images moved 35% left */
+.top-row { transform: translateY(15%); }
+.bottom-row { transform: translateY(-15%); }
 
-    /* Position offsets */
-    .side { transform: translateX(15%); }
-    .right-column { transform: translateX(-15%); }
-    .top-row { transform: translateY(15%); }
-    .bottom-row { transform: translateY(-15%); }
+/* Images floating */
+img {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid #ffb6c1;
+  animation: floatImage 6s ease-in-out infinite alternate;
+}
+img:nth-child(1) { animation-delay: 0s; }
+img:nth-child(2) { animation-delay: 0.5s; }
+img:nth-child(3) { animation-delay: 1s; }
+img:nth-child(4) { animation-delay: 1.5s; }
+img:nth-child(5) { animation-delay: 2s; }
+img:nth-child(6) { animation-delay: 2.5s; }
+img:nth-child(7) { animation-delay: 3s; }
+img:nth-child(8) { animation-delay: 3.5s; }
+img:nth-child(9) { animation-delay: 4s; }
+img:nth-child(10) { animation-delay: 4.5s; }
+img:nth-child(11) { animation-delay: 5s; }
+img:nth-child(12) { animation-delay: 5.5s; }
 
-    /* All images floating */
-    img {
-      width: 230px; /* 35% bigger */
-      height: 230px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 2px solid #ffb6c1;
-      animation: floatImage 6s ease-in-out infinite alternate;
-    }
+@keyframes floatImage {
+  0% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(15px, -10px) scale(1.05); }
+  50% { transform: translate(-10px, 15px) scale(1.1); }
+  75% { transform: translate(5px, -5px) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
 
-    /* Stagger animation delays */
-    img:nth-child(1) { animation-delay: 0s; }
-    img:nth-child(2) { animation-delay: 0.5s; }
-    img:nth-child(3) { animation-delay: 1s; }
-    img:nth-child(4) { animation-delay: 1.5s; }
-    img:nth-child(5) { animation-delay: 2s; }
-    img:nth-child(6) { animation-delay: 2.5s; }
-    img:nth-child(7) { animation-delay: 3s; }
-    img:nth-child(8) { animation-delay: 3.5s; }
-    img:nth-child(9) { animation-delay: 4s; }
-    img:nth-child(10) { animation-delay: 4.5s; }
-    img:nth-child(11) { animation-delay: 5s; }
-    img:nth-child(12) { animation-delay: 5.5s; }
+.center {
+  text-align: center;
+  padding: 20px;
+  z-index: 10;
+}
 
-    @keyframes floatImage {
-      0% { transform: translate(0,0) scale(1); }
-      25% { transform: translate(15px, -10px) scale(1.05); }
-      50% { transform: translate(-10px, 15px) scale(1.1); }
-      75% { transform: translate(5px, -5px) scale(1.05); }
-      100% { transform: translate(0,0) scale(1); }
-    }
+.title {
+  font-size: 84px;
+  font-family: 'Great Vibes', cursive;
+  background: linear-gradient(90deg, #ffd700, #fff2a8, #ffd700);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  margin-bottom: 20px;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
 
-    .center {
-      text-align: center;
-      padding: 20px;
-      z-index: 10;
-    }
+.name { font-size: 38px; margin-top: 10px; }
+.question { font-size: 31px; margin: 15px 0 25px; color: #ffb6c1; }
+#response { margin-top: 20px; font-size: 24px; color: #fff2a8; }
 
-    .title {
-      font-size: 84px; /* 20% increase */
-      font-family: 'Great Vibes', cursive;
-      background: linear-gradient(90deg, #ffd700, #fff2a8, #ffd700);
-      background-size: 200% auto;
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-      margin-bottom: 20px;
-    }
+button {
+  padding: 14px 28px;
+  margin: 10px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  transition: transform 0.2s;
+}
+button:hover { transform: scale(1.05); }
+.yes { background: #ffb6c1; color: #800020; font-weight: bold; }
+.no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
 
-    @keyframes shimmer { to { background-position: 200% center; } }
+/* Floating hearts/stars */
+.floating {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.floating span {
+  position: absolute;
+  bottom: -50px;
+  color: #ffb6c1;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.8;
+  font-size: 18px;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
 
-    .name { font-size: 38px; margin-top: 10px; }
-    .question { font-size: 31px; margin: 15px 0 25px; color: #ffb6c1; }
-    #response { margin-top: 20px; font-size: 24px; color: #fff2a8; }
+/* Fireworks container */
+.fireworks-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 20;
+}
+.firework {
+  position: absolute;
+  font-size: 18px;
+  animation: fireworkAnim 1.2s ease-out forwards;
+}
+@keyframes fireworkAnim {
+  0% { transform: translate(0,0) scale(0); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
+}
 
-    button {
-      padding: 14px 28px;
-      margin: 10px;
-      font-size: 18px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Playfair Display', serif;
-      transition: transform 0.2s;
-    }
-    button:hover { transform: scale(1.05); }
-    .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
-    .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
-
-    /* Floating hearts/stars */
-    .floating {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .floating span {
-      position: absolute;
-      bottom: -50px;
-      color: #ffb6c1;
-      animation: floatUp 8s linear infinite;
-      opacity: 0.8;
-      font-size: 18px;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-    }
-
-    /* Fireworks on Yes click */
-    .firework {
-      position: absolute;
-      font-size: 24px;
-      animation: fireworkAnim 1s ease-out forwards;
-      pointer-events: none;
-    }
-    @keyframes fireworkAnim {
-      0% { transform: scale(0) translate(0,0); opacity: 1; }
-      100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity: 0; }
-    }
-
-  </style>
+</style>
 </head>
 <body>
 
@@ -174,14 +177,14 @@
 </div>
 
 <div class="container">
-  <!-- Top row images -->
+  <!-- Top row -->
   <div class="top-row" style="grid-column: 1/4;">
     <img src="photo4.jpg" alt="Top 1">
     <img src="photo5.jpg" alt="Top 2">
     <img src="photo6.jpg" alt="Top 3">
   </div>
 
-  <!-- Left column images -->
+  <!-- Left column -->
   <div class="side">
     <img src="photo1.jpg" alt="Left 1">
     <img src="photo2.jpg" alt="Left 2">
@@ -198,14 +201,14 @@
     <div id="response"></div>
   </div>
 
-  <!-- Right column images -->
+  <!-- Right column -->
   <div class="right-column">
     <img src="photo7.jpg" alt="Right 1">
     <img src="photo8.jpg" alt="Right 2">
     <img src="photo9.jpg" alt="Right 3">
   </div>
 
-  <!-- Bottom row images -->
+  <!-- Bottom row -->
   <div class="bottom-row" style="grid-column: 1/4;">
     <img src="photo10.jpg" alt="Bottom 1">
     <img src="photo11.jpg" alt="Bottom 2">
@@ -213,11 +216,13 @@
   </div>
 </div>
 
+<div class="fireworks-container" id="fireworks"></div>
+
 <script>
 function sayYes() {
   document.getElementById('response').innerText =
     'I am so lucky to have you as my first valentine ❤️';
-  createFireworks();
+  createFullPageFireworks();
 }
 
 function sayNo() {
@@ -225,27 +230,30 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-function createFireworks() {
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+function createFullPageFireworks() {
+  const container = document.getElementById('fireworks');
+  const colors = ['#ffd700','#ff69b4','#ff4500','#ffffff'];
 
-  for (let i = 0; i < 20; i++) {
-    const fire = document.createElement('div');
-    fire.className = 'firework';
-    fire.style.left = centerX + 'px';
-    fire.style.top = centerY + 'px';
-    
-    fire.innerText = '✨';
-    const colors = ['#ffd700', '#ff69b4', '#ff4500', '#ffffff'];
-    fire.style.color = colors[Math.floor(Math.random() * colors.length)];
-    
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random() * 200;
-    fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
-    fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
-    
-    document.body.appendChild(fire);
-    setTimeout(() => fire.remove(), 1000);
+  // Generate multiple fireworks at random positions
+  for (let i = 0; i < 8; i++) {
+    const fx = window.innerWidth * Math.random();
+    const fy = window.innerHeight * Math.random();
+    for (let j = 0; j < 30; j++) {
+      const fire = document.createElement('div');
+      fire.className = 'firework';
+      fire.style.left = fx + 'px';
+      fire.style.top = fy + 'px';
+      fire.innerText = '✨';
+      fire.style.color = colors[Math.floor(Math.random()*colors.length)];
+
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 150 + 50; // spread
+      fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+      fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+
+      container.appendChild(fire);
+      setTimeout(() => fire.remove(), 1200);
+    }
   }
 }
 </script>
