@@ -189,4 +189,111 @@ button:hover { transform: scale(1.05); }
   <span style="left:78%; animation-delay:3.1s">❤</span>
   <span style="left:82%; animation-delay:2.6s">★</span>
   <span style="left:86%; animation-delay:1.9s">❤</span>
-  <span style="left:90%; animation-delay:0.6s">
+  <span style="left:90%; animation-delay:0.6s">★</span>
+  <span style="left:94%; animation-delay:2.4s">❤</span>
+  <span style="left:98%; animation-delay:3.3s">★</span>
+  <span style="left:3%; animation-delay:1.7s">❤</span>
+  <span style="left:7%; animation-delay:2.9s">★</span>
+  <span style="left:12%; animation-delay:0.4s">❤</span>
+  <span style="left:16%; animation-delay:3.0s">★</span>
+  <span style="left:21%; animation-delay:1.2s">❤</span>
+  <span style="left:25%; animation-delay:2.7s">★</span>
+  <span style="left:31%; animation-delay:0.9s">❤</span>
+  <span style="left:36%; animation-delay:3.4s">★</span>
+  <span style="left:41%; animation-delay:1.0s">❤</span>
+  <span style="left:45%; animation-delay:2.3s">★</span>
+</div>
+
+<div class="container">
+  <div class="top-row" style="grid-column: 1/4;">
+    <img src="photo1.jpg" alt="Top 1">
+    <img src="photo2.jpg" alt="Top 2">
+    <img src="photo3.jpg" alt="Top 3">
+  </div>
+
+  <div class="side">
+    <img src="photo4.jpg" alt="Left 1">
+    <img src="photo5.jpg" alt="Left 2">
+    <img src="photo6.jpg" alt="Left 3">
+  </div>
+
+  <div class="center">
+    <div class="title">Happy Valentine's Day</div>
+    <div class="name">Thanushri Siva Kumar</div>
+    <div class="question">Will you be my valentine?</div>
+    <button class="yes" onclick="sayYes()">Yes</button>
+    <button class="no" onclick="sayNo()">No</button>
+    <div id="response"></div>
+  </div>
+
+  <div class="right-column">
+    <img src="photo7.jpg" alt="Right 1">
+    <img src="photo8.jpg" alt="Right 2">
+    <img src="photo9.jpg" alt="Right 3">
+  </div>
+
+  <div class="bottom-row" style="grid-column: 1/4;">
+    <img src="photo10.jpg" alt="Bottom 1">
+    <img src="photo11.jpg" alt="Bottom 2">
+    <img src="photo12.jpg" alt="Bottom 3">
+  </div>
+</div>
+
+<div class="fireworks-container" id="fireworks"></div>
+
+<script>
+function sayYes() {
+  document.getElementById('response').innerHTML =
+    '❤️ Our first valentine ❤️ <br> ❤️ Love you to the moon and back ❤️ ';
+  startFireworksLoop();
+}
+
+function sayNo() {
+  document.getElementById('response').innerText =
+    'Please try again, that is the wrong answer 😉';
+}
+
+// Fireworks loop
+function startFireworksLoop() {
+  // loop 8 times randomly
+  let count = 0;
+  const interval = setInterval(() => {
+    createRealisticFireworks();
+    count++;
+    if (count >= 8) clearInterval(interval);
+  }, 600);
+}
+
+// Realistic fireworks
+function createRealisticFireworks() {
+  const container = document.getElementById('fireworks');
+  const colors = ['#ffd700','#fff700','#ffdf00','#ffe600'];
+
+  for (let i = 0; i < 12; i++) {
+    const fx = window.innerWidth * Math.random();
+    const fy = window.innerHeight * Math.random();
+
+    for (let j = 0; j < 60; j++) {
+      const fire = document.createElement('div');
+      fire.className = 'firework';
+      fire.style.left = fx + 'px';
+      fire.style.top = fy + 'px';
+      fire.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+      
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 250 + 50;
+      fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+      fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+
+      fire.style.width = (Math.random()*5 + 5) + 'px';
+      fire.style.height = (Math.random()*5 + 5) + 'px';
+
+      container.appendChild(fire);
+      setTimeout(() => fire.remove(), 1600);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
