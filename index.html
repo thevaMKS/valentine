@@ -42,10 +42,10 @@ body {
 }
 
 /* Offsets */
-.side { transform: translateX(15%); }      /* left images 15% to right */
-.right-column { transform: translateX(-15%); } /* right images 15% to left */
-.top-row { transform: translateY(20%); }      /* move top row down 20% */
-.bottom-row { transform: translateY(-20%); }  /* move bottom row up 20% */
+.side { transform: translateX(15%); }
+.right-column { transform: translateX(-15%); }
+.top-row { transform: translateY(15%); }
+.bottom-row { transform: translateY(-15%); }
 
 /* Images floating */
 img {
@@ -139,7 +139,7 @@ button:hover { transform: scale(1.05); }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Fireworks container */
+/* Fireworks as stars */
 .fireworks-container {
   position: absolute;
   width: 100%;
@@ -152,69 +152,55 @@ button:hover { transform: scale(1.05); }
 }
 .firework {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  animation: fireworkAnim 1.2s ease-out forwards;
+  font-size: 16px; 
+  color: #FFD700; /* bright gold */
+  animation: fireworkAnim 1.2s ease-out forwards, glimmer 0.6s alternate infinite;
 }
 @keyframes fireworkAnim {
   0% { transform: translate(0,0) scale(0); opacity: 1; }
-  100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
+  100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
+}
+@keyframes glimmer {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 </style>
 </head>
 <body>
 
+<!-- Floating hearts/stars with random delays -->
 <div class="floating">
-  <!-- 36 hearts & stars for double the amount -->
-  <span style="left:2%; animation-delay:1.1s">★</span>
-  <span style="left:6%; animation-delay:0.5s">❤</span>
-  <span style="left:10%; animation-delay:2.3s">★</span>
-  <span style="left:14%; animation-delay:1.7s">❤</span>
-  <span style="left:18%; animation-delay:0.8s">★</span>
-  <span style="left:22%; animation-delay:2.0s">❤</span>
-  <span style="left:26%; animation-delay:1.5s">★</span>
-  <span style="left:30%; animation-delay:3.2s">❤</span>
-  <span style="left:34%; animation-delay:2.8s">★</span>
-  <span style="left:38%; animation-delay:1.0s">❤</span>
-  <span style="left:42%; animation-delay:2.5s">★</span>
-  <span style="left:46%; animation-delay:3.0s">❤</span>
-  <span style="left:50%; animation-delay:0.9s">★</span>
-  <span style="left:54%; animation-delay:1.8s">❤</span>
-  <span style="left:58%; animation-delay:2.2s">★</span>
-  <span style="left:62%; animation-delay:3.5s">❤</span>
-  <span style="left:66%; animation-delay:0.7s">★</span>
-  <span style="left:70%; animation-delay:2.1s">❤</span>
-  <span style="left:74%; animation-delay:1.3s">★</span>
-  <span style="left:78%; animation-delay:3.1s">❤</span>
-  <span style="left:82%; animation-delay:2.6s">★</span>
-  <span style="left:86%; animation-delay:1.9s">❤</span>
-  <span style="left:90%; animation-delay:0.6s">★</span>
-  <span style="left:94%; animation-delay:2.4s">❤</span>
-  <span style="left:98%; animation-delay:3.3s">★</span>
-  <span style="left:3%; animation-delay:1.7s">❤</span>
-  <span style="left:7%; animation-delay:2.9s">★</span>
-  <span style="left:12%; animation-delay:0.4s">❤</span>
-  <span style="left:16%; animation-delay:3.0s">★</span>
-  <span style="left:21%; animation-delay:1.2s">❤</span>
-  <span style="left:25%; animation-delay:2.7s">★</span>
-  <span style="left:31%; animation-delay:0.9s">❤</span>
-  <span style="left:36%; animation-delay:3.4s">★</span>
-  <span style="left:41%; animation-delay:1.0s">❤</span>
-  <span style="left:45%; animation-delay:2.3s">★</span>
+  <span style="left:2%; animation-delay:0.3s">★</span>
+  <span style="left:8%; animation-delay:1.2s">❤</span>
+  <span style="left:14%; animation-delay:0.7s">★</span>
+  <span style="left:20%; animation-delay:2.1s">❤</span>
+  <span style="left:26%; animation-delay:0.5s">★</span>
+  <span style="left:32%; animation-delay:1.8s">❤</span>
+  <span style="left:38%; animation-delay:0.9s">★</span>
+  <span style="left:44%; animation-delay:2.5s">❤</span>
+  <span style="left:50%; animation-delay:1.1s">★</span>
+  <span style="left:56%; animation-delay:0.2s">❤</span>
+  <span style="left:62%; animation-delay:2.2s">★</span>
+  <span style="left:68%; animation-delay:1.6s">❤</span>
+  <span style="left:74%; animation-delay:0.8s">★</span>
+  <span style="left:80%; animation-delay:2.8s">❤</span>
+  <span style="left:86%; animation-delay:1.4s">★</span>
+  <span style="left:92%; animation-delay:0.6s">❤</span>
+  <span style="left:96%; animation-delay:2.0s">★</span>
+  <span style="left:99%; animation-delay:1.0s">❤</span>
 </div>
 
 <div class="container">
   <div class="top-row" style="grid-column: 1/4;">
-    <img src="photo1.jpg" alt="Top 1">
-    <img src="photo2.jpg" alt="Top 2">
-    <img src="photo3.jpg" alt="Top 3">
+    <img src="IMG_3613.jpeg" alt="Top 1">
+    <img src="IMG_3197.jpeg" alt="Top 2">
+    <img src="IMG_3502.jpeg" alt="Top 3">
   </div>
 
   <div class="side">
-    <img src="photo4.jpg" alt="Left 1">
-    <img src="photo5.jpg" alt="Left 2">
-    <img src="photo6.jpg" alt="Left 3">
+    <img src="IMG_3580.jpeg" alt="Left 1">
+    <img src="IMG_3587.jpeg" alt="Left 2">
+    <img src="IMG_3725.jpeg" alt="Left 3">
   </div>
 
   <div class="center">
@@ -228,14 +214,14 @@ button:hover { transform: scale(1.05); }
 
   <div class="right-column">
     <img src="photo7.jpg" alt="Right 1">
-    <img src="photo8.jpg" alt="Right 2">
+    <img src="IMG_3513.jpeg" alt="Right 2">
     <img src="photo9.jpg" alt="Right 3">
   </div>
 
   <div class="bottom-row" style="grid-column: 1/4;">
     <img src="photo10.jpg" alt="Bottom 1">
     <img src="photo11.jpg" alt="Bottom 2">
-    <img src="photo12.jpg" alt="Bottom 3">
+    <img src="IMG_3908.jpeg" alt="Bottom 3">
   </div>
 </div>
 
@@ -244,8 +230,17 @@ button:hover { transform: scale(1.05); }
 <script>
 function sayYes() {
   document.getElementById('response').innerHTML =
-    '❤️ Our first valentine ❤️ <br> ❤️ Love you to the moon and back ❤️ ';
-  startFireworksLoop();
+    '❤️ Our first valentine ❤️<br>❤️ Love you to the moon and back ❤️';
+
+  let rounds = 6;       // number of firework loops
+  let interval = 700;   // interval between loops
+  let count = 0;
+
+  const fireworkLoop = setInterval(() => {
+    createRandomFireworks();
+    count++;
+    if (count >= rounds) clearInterval(fireworkLoop);
+  }, interval);
 }
 
 function sayNo() {
@@ -253,44 +248,30 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-// Fireworks loop
-function startFireworksLoop() {
-  // loop 8 times randomly
-  let count = 0;
-  const interval = setInterval(() => {
-    createRealisticFireworks();
-    count++;
-    if (count >= 8) clearInterval(interval);
-  }, 600);
-}
-
-// Realistic fireworks
-function createRealisticFireworks() {
+// Fireworks at random positions as stars
+function createRandomFireworks() {
   const container = document.getElementById('fireworks');
-  const colors = ['#ffd700','#fff700','#ffdf00','#ffe600'];
+  const starChar = '★'; // star particle
 
-  for (let i = 0; i < 12; i++) {
-    const fx = window.innerWidth * Math.random();
-    const fy = window.innerHeight * Math.random();
+  const fx = Math.random() * window.innerWidth;
+  const fy = Math.random() * window.innerHeight;
 
-    for (let j = 0; j < 60; j++) {
-      const fire = document.createElement('div');
-      fire.className = 'firework';
-      fire.style.left = fx + 'px';
-      fire.style.top = fy + 'px';
-      fire.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-      
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = Math.random() * 250 + 50;
-      fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
-      fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+  for (let j = 0; j < 150; j++) { // double the amount
+    const fire = document.createElement('span');
+    fire.className = 'firework';
+    fire.innerText = starChar;
+    fire.style.left = fx + 'px';
+    fire.style.top = fy + 'px';
+    
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 300 + 50;
+    fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+    fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
 
-      fire.style.width = (Math.random()*5 + 5) + 'px';
-      fire.style.height = (Math.random()*5 + 5) + 'px';
+    fire.style.fontSize = (Math.random()*8 + 12) + 'px'; // vary size
 
-      container.appendChild(fire);
-      setTimeout(() => fire.remove(), 1600);
-    }
+    container.appendChild(fire);
+    setTimeout(() => fire.remove(), 2000);
   }
 }
 </script>
