@@ -114,7 +114,7 @@ button:hover { transform: scale(1.05); }
 .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
 .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
 
-/* Floating hearts/stars - increased size by 10% */
+/* Floating hearts/stars */
 .floating {
   position: absolute;
   width: 100%;
@@ -131,7 +131,7 @@ button:hover { transform: scale(1.05); }
   color: #ffb6c1;
   animation: floatUp 8s linear infinite;
   opacity: 0.8;
-  font-size: 20px; /* 10% bigger */
+  font-size: 20px;
 }
 @keyframes floatUp {
   0% { transform: translateY(0) scale(1); opacity: 0; }
@@ -139,7 +139,7 @@ button:hover { transform: scale(1.05); }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Fireworks container */
+/* Fireworks */
 .fireworks-container {
   position: absolute;
   width: 100%;
@@ -152,7 +152,7 @@ button:hover { transform: scale(1.05); }
 }
 .firework {
   position: absolute;
-  width: 6px;  /* small circle size */
+  width: 6px;
   height: 6px;
   border-radius: 50%;
   animation: fireworkAnim 1.2s ease-out forwards;
@@ -216,9 +216,18 @@ button:hover { transform: scale(1.05); }
 
 <script>
 function sayYes() {
-  document.getElementById('response').innerText =
-    'Our first valentine ❤️ Love you to the moon and back ❤️ ';
-  createRealisticFireworks();
+  document.getElementById('response').innerHTML =
+    '❤️ Our first valentine ❤️<br>❤️ Love you to the moon and back ❤️';
+
+  let rounds = 5;       // number of firework loops
+  let interval = 800;   // interval between loops in ms
+  let count = 0;
+
+  const fireworkLoop = setInterval(() => {
+    createRandomFireworks();
+    count++;
+    if (count >= rounds) clearInterval(fireworkLoop);
+  }, interval);
 }
 
 function sayNo() {
@@ -226,33 +235,32 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-// Realistic fireworks
-function createRealisticFireworks() {
+// Fireworks at random positions
+function createRandomFireworks() {
   const container = document.getElementById('fireworks');
   const colors = ['#ffd700','#ff69b4','#ff4500','#ffffff'];
 
-  for (let i = 0; i < 10; i++) {
-    const fx = window.innerWidth * Math.random();
-    const fy = window.innerHeight * Math.random();
+  // Random origin for this loop
+  const fx = Math.random() * window.innerWidth;
+  const fy = Math.random() * window.innerHeight;
 
-    for (let j = 0; j < 50; j++) {
-      const fire = document.createElement('div');
-      fire.className = 'firework';
-      fire.style.left = fx + 'px';
-      fire.style.top = fy + 'px';
-      fire.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-      
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = Math.random() * 200 + 50;
-      fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
-      fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
+  for (let j = 0; j < 50; j++) {
+    const fire = document.createElement('div');
+    fire.className = 'firework';
+    fire.style.left = fx + 'px';
+    fire.style.top = fy + 'px';
+    fire.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200 + 50;
+    fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
+    fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
 
-      fire.style.width = (Math.random()*4 + 4) + 'px';
-      fire.style.height = (Math.random()*4 + 4) + 'px';
+    fire.style.width = (Math.random()*4 + 4) + 'px';
+    fire.style.height = (Math.random()*4 + 4) + 'px';
 
-      container.appendChild(fire);
-      setTimeout(() => fire.remove(), 1500);
-    }
+    container.appendChild(fire);
+    setTimeout(() => fire.remove(), 1500);
   }
 }
 </script>
