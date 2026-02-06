@@ -114,7 +114,7 @@ button:hover { transform: scale(1.05); }
 .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
 .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
 
-/* Floating hearts/stars - doubled amount */
+/* Floating hearts/stars */
 .floating {
   position: absolute;
   width: 100%;
@@ -155,36 +155,40 @@ button:hover { transform: scale(1.05); }
   width: 6px; 
   height: 6px;
   border-radius: 50%;
-  animation: fireworkAnim 1.2s ease-out forwards;
+  animation: fireworkAnim 1.2s ease-out forwards, glimmer 0.6s alternate infinite;
 }
 @keyframes fireworkAnim {
   0% { transform: translate(0,0) scale(0); opacity: 1; }
   100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
 }
+@keyframes glimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 </style>
 </head>
 <body>
 
-<!-- Floating hearts/stars (doubled) -->
+<!-- Floating hearts/stars with random delays -->
 <div class="floating">
-  <span style="left:2%; animation-delay:0s">★</span>
-  <span style="left:8%; animation-delay:0.5s">❤</span>
-  <span style="left:14%; animation-delay:1s">★</span>
-  <span style="left:20%; animation-delay:1.5s">❤</span>
-  <span style="left:26%; animation-delay:2s">★</span>
-  <span style="left:32%; animation-delay:2.5s">❤</span>
-  <span style="left:38%; animation-delay:3s">★</span>
-  <span style="left:44%; animation-delay:3.5s">❤</span>
-  <span style="left:50%; animation-delay:4s">★</span>
-  <span style="left:56%; animation-delay:4.5s">❤</span>
-  <span style="left:62%; animation-delay:5s">★</span>
-  <span style="left:68%; animation-delay:5.5s">❤</span>
-  <span style="left:74%; animation-delay:0.3s">★</span>
-  <span style="left:80%; animation-delay:1.2s">❤</span>
-  <span style="left:86%; animation-delay:2.1s">★</span>
-  <span style="left:92%; animation-delay:3s">❤</span>
-  <span style="left:96%; animation-delay:4s">★</span>
-  <span style="left:99%; animation-delay:5s">❤</span>
+  <span style="left:2%; animation-delay:0.3s">★</span>
+  <span style="left:8%; animation-delay:1.2s">❤</span>
+  <span style="left:14%; animation-delay:0.7s">★</span>
+  <span style="left:20%; animation-delay:2.1s">❤</span>
+  <span style="left:26%; animation-delay:0.5s">★</span>
+  <span style="left:32%; animation-delay:1.8s">❤</span>
+  <span style="left:38%; animation-delay:0.9s">★</span>
+  <span style="left:44%; animation-delay:2.5s">❤</span>
+  <span style="left:50%; animation-delay:1.1s">★</span>
+  <span style="left:56%; animation-delay:0.2s">❤</span>
+  <span style="left:62%; animation-delay:2.2s">★</span>
+  <span style="left:68%; animation-delay:1.6s">❤</span>
+  <span style="left:74%; animation-delay:0.8s">★</span>
+  <span style="left:80%; animation-delay:2.8s">❤</span>
+  <span style="left:86%; animation-delay:1.4s">★</span>
+  <span style="left:92%; animation-delay:0.6s">❤</span>
+  <span style="left:96%; animation-delay:2.0s">★</span>
+  <span style="left:99%; animation-delay:1.0s">❤</span>
 </div>
 
 <div class="container">
@@ -229,8 +233,8 @@ function sayYes() {
   document.getElementById('response').innerHTML =
     '❤️ Our first valentine ❤️<br>❤️ Love you to the moon and back ❤️';
 
-  let rounds = 5;       // number of firework loops
-  let interval = 800;   // interval between loops in ms
+  let rounds = 6;       // number of firework loops
+  let interval = 700;   // interval between loops in ms
   let count = 0;
 
   const fireworkLoop = setInterval(() => {
@@ -245,7 +249,7 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-// Fireworks at random positions, brighter and gold
+// Fireworks at random positions, brighter gold with glimmer
 function createRandomFireworks() {
   const container = document.getElementById('fireworks');
   const color = '#FFD700'; // bright gold
@@ -253,7 +257,7 @@ function createRandomFireworks() {
   const fx = Math.random() * window.innerWidth;
   const fy = Math.random() * window.innerHeight;
 
-  for (let j = 0; j < 100; j++) { // increased particles
+  for (let j = 0; j < 150; j++) { // double the amount
     const fire = document.createElement('div');
     fire.className = 'firework';
     fire.style.left = fx + 'px';
@@ -261,15 +265,15 @@ function createRandomFireworks() {
     fire.style.backgroundColor = color;
     
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random() * 250 + 50; // slightly further
+    const distance = Math.random() * 300 + 50;
     fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
     fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
 
-    fire.style.width = (Math.random()*4 + 6) + 'px'; // brighter
+    fire.style.width = (Math.random()*4 + 6) + 'px';
     fire.style.height = (Math.random()*4 + 6) + 'px';
 
     container.appendChild(fire);
-    setTimeout(() => fire.remove(), 1800);
+    setTimeout(() => fire.remove(), 2000);
   }
 }
 </script>
