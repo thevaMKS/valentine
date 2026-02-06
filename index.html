@@ -139,7 +139,7 @@ button:hover { transform: scale(1.05); }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Fireworks container */
+/* Fireworks as stars */
 .fireworks-container {
   position: absolute;
   width: 100%;
@@ -152,17 +152,16 @@ button:hover { transform: scale(1.05); }
 }
 .firework {
   position: absolute;
-  width: 6px; 
-  height: 6px;
-  border-radius: 50%;
+  font-size: 16px; 
+  color: #FFD700; /* bright gold */
   animation: fireworkAnim 1.2s ease-out forwards, glimmer 0.6s alternate infinite;
 }
 @keyframes fireworkAnim {
   0% { transform: translate(0,0) scale(0); opacity: 1; }
-  100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
+  100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
 }
 @keyframes glimmer {
-  0%, 100% { opacity: 1; }
+  0%,100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
 </style>
@@ -234,7 +233,7 @@ function sayYes() {
     '❤️ Our first valentine ❤️<br>❤️ Love you to the moon and back ❤️';
 
   let rounds = 6;       // number of firework loops
-  let interval = 700;   // interval between loops in ms
+  let interval = 700;   // interval between loops
   let count = 0;
 
   const fireworkLoop = setInterval(() => {
@@ -249,28 +248,27 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-// Fireworks at random positions, brighter gold with glimmer
+// Fireworks at random positions as stars
 function createRandomFireworks() {
   const container = document.getElementById('fireworks');
-  const color = '#FFD700'; // bright gold
+  const starChar = '★'; // star particle
 
   const fx = Math.random() * window.innerWidth;
   const fy = Math.random() * window.innerHeight;
 
   for (let j = 0; j < 150; j++) { // double the amount
-    const fire = document.createElement('div');
+    const fire = document.createElement('span');
     fire.className = 'firework';
+    fire.innerText = starChar;
     fire.style.left = fx + 'px';
     fire.style.top = fy + 'px';
-    fire.style.backgroundColor = color;
     
     const angle = Math.random() * 2 * Math.PI;
     const distance = Math.random() * 300 + 50;
     fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
     fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
 
-    fire.style.width = (Math.random()*4 + 6) + 'px';
-    fire.style.height = (Math.random()*4 + 6) + 'px';
+    fire.style.fontSize = (Math.random()*8 + 12) + 'px'; // vary size
 
     container.appendChild(fire);
     setTimeout(() => fire.remove(), 2000);
