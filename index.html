@@ -42,8 +42,8 @@ body {
 }
 
 /* Offsets */
-.side { transform: translateX(15%); }      /* left images 15% to right */
-.right-column { transform: translateX(-15%); } /* right images 15% to left */
+.side { transform: translateX(15%); }
+.right-column { transform: translateX(-15%); }
 .top-row { transform: translateY(15%); }
 .bottom-row { transform: translateY(-15%); }
 
@@ -114,7 +114,7 @@ button:hover { transform: scale(1.05); }
 .yes { background: #ffb6c1; color: #800020; font-weight: bold; }
 .no { background: transparent; border: 1px solid #ffb6c1; color: #ffb6c1; }
 
-/* Floating hearts/stars */
+/* Floating hearts/stars - doubled amount */
 .floating {
   position: absolute;
   width: 100%;
@@ -139,7 +139,7 @@ button:hover { transform: scale(1.05); }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Fireworks */
+/* Fireworks container */
 .fireworks-container {
   position: absolute;
   width: 100%;
@@ -152,7 +152,7 @@ button:hover { transform: scale(1.05); }
 }
 .firework {
   position: absolute;
-  width: 6px;
+  width: 6px; 
   height: 6px;
   border-radius: 50%;
   animation: fireworkAnim 1.2s ease-out forwards;
@@ -165,16 +165,26 @@ button:hover { transform: scale(1.05); }
 </head>
 <body>
 
+<!-- Floating hearts/stars (doubled) -->
 <div class="floating">
-  <span style="left:5%; animation-delay:0s">★</span>
-  <span style="left:15%; animation-delay:1s">❤</span>
-  <span style="left:25%; animation-delay:2s">★</span>
-  <span style="left:35%; animation-delay:3s">❤</span>
-  <span style="left:45%; animation-delay:4s">★</span>
-  <span style="left:55%; animation-delay:5s">❤</span>
-  <span style="left:65%; animation-delay:2s">★</span>
-  <span style="left:75%; animation-delay:3s">❤</span>
-  <span style="left:85%; animation-delay:4s">★</span>
+  <span style="left:2%; animation-delay:0s">★</span>
+  <span style="left:8%; animation-delay:0.5s">❤</span>
+  <span style="left:14%; animation-delay:1s">★</span>
+  <span style="left:20%; animation-delay:1.5s">❤</span>
+  <span style="left:26%; animation-delay:2s">★</span>
+  <span style="left:32%; animation-delay:2.5s">❤</span>
+  <span style="left:38%; animation-delay:3s">★</span>
+  <span style="left:44%; animation-delay:3.5s">❤</span>
+  <span style="left:50%; animation-delay:4s">★</span>
+  <span style="left:56%; animation-delay:4.5s">❤</span>
+  <span style="left:62%; animation-delay:5s">★</span>
+  <span style="left:68%; animation-delay:5.5s">❤</span>
+  <span style="left:74%; animation-delay:0.3s">★</span>
+  <span style="left:80%; animation-delay:1.2s">❤</span>
+  <span style="left:86%; animation-delay:2.1s">★</span>
+  <span style="left:92%; animation-delay:3s">❤</span>
+  <span style="left:96%; animation-delay:4s">★</span>
+  <span style="left:99%; animation-delay:5s">❤</span>
 </div>
 
 <div class="container">
@@ -235,32 +245,31 @@ function sayNo() {
     'Please try again, that is the wrong answer 😉';
 }
 
-// Fireworks at random positions
+// Fireworks at random positions, brighter and gold
 function createRandomFireworks() {
   const container = document.getElementById('fireworks');
-  const colors = ['#ffd700','#ff69b4','#ff4500','#ffffff'];
+  const color = '#FFD700'; // bright gold
 
-  // Random origin for this loop
   const fx = Math.random() * window.innerWidth;
   const fy = Math.random() * window.innerHeight;
 
-  for (let j = 0; j < 50; j++) {
+  for (let j = 0; j < 100; j++) { // increased particles
     const fire = document.createElement('div');
     fire.className = 'firework';
     fire.style.left = fx + 'px';
     fire.style.top = fy + 'px';
-    fire.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    fire.style.backgroundColor = color;
     
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random() * 200 + 50;
+    const distance = Math.random() * 250 + 50; // slightly further
     fire.style.setProperty('--x', distance * Math.cos(angle) + 'px');
     fire.style.setProperty('--y', distance * Math.sin(angle) + 'px');
 
-    fire.style.width = (Math.random()*4 + 4) + 'px';
-    fire.style.height = (Math.random()*4 + 4) + 'px';
+    fire.style.width = (Math.random()*4 + 6) + 'px'; // brighter
+    fire.style.height = (Math.random()*4 + 6) + 'px';
 
     container.appendChild(fire);
-    setTimeout(() => fire.remove(), 1500);
+    setTimeout(() => fire.remove(), 1800);
   }
 }
 </script>
